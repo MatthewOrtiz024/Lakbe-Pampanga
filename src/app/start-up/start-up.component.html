@@ -1,0 +1,72 @@
+<div class="container">
+    <header>
+      <div class="logo">LOGO</div>
+      <nav class="navbar">
+        <div class="left-links">
+          <a routerLink="/home">Home</a>
+          <a routerLink="/plan-now">Plan Now</a>
+        </div>
+        <div class="right-links">
+          <a routerLink="/login">Login</a>
+          <a routerLink="/sign-up">Sign Up</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1>START YOUR TRIP!</h1>
+      <form>
+        <input
+          type="text"
+          placeholder="CURRENT LOCATION BOX"
+          class="location-box"
+        />
+        <select class="destination-box">
+          <option value="" disabled selected>WHERE TO GO</option>
+          <option value="place1">Place 1</option>
+          <option value="place2">Place 2</option>
+          <option value="place3">Place 3</option>
+          <option value="place4">Place 4</option>
+          <option value="place5">Place 5</option>
+        </select>
+        <input
+          type="text"
+          placeholder="INSERT DATE/TIME (optional)"
+          class="date-time-box"
+        />
+        <button type="button" (click)="startTrip()" class="start-trip">START TRIP</button>
+
+      </form>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // Get the 'START TRIP' button
+  document.querySelector('.start-trip').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the form submission (if needed)
+
+    // SweetAlert2 popup
+    Swal.fire({
+      title: 'What is your Plan?',
+      text: 'You can either plan your trip or start navigation!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Navigate',
+      cancelButtonText: 'Plan',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User clicks 'Navigate'
+        Swal.fire('Navigating...', 'Redirecting to the navigation page...', 'success');
+        // Redirect to the navigation page (change this URL to your actual destination)
+        window.location.href = '/navigate';  // Example URL, adjust as necessary
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // User clicks 'Plan'
+        Swal.fire('Planning...', 'Redirecting to the planning page...', 'success');
+        // Redirect to the planning page (change this URL to your actual destination)
+        window.location.href = '/plan-now';  // Example URL, adjust as necessary
+      }
+    });
+  });
+</script>
+
+    </main>
+  </div>
+  
